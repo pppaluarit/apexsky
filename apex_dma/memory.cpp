@@ -176,7 +176,8 @@ int Memory::open_proc(const char *name) {
     long *base_section_value = (long *)base_section;
     memset(base_section, 0, 8);
     CSliceMut<uint8_t> slice(base_section, 8);
-    os.read_raw_into(proc.hProcess.info()->address + 0x520, slice); // win10
+    os.read_raw_into(proc.hProcess.info()->address + 0x3c8, slice);
+     //win10 20H2 - 22H2 = 0x520 win10 19H1 - 19H2 = 0x3c8	 
     proc.baseaddr = *base_section_value;
     // 遍历dtb
     for (size_t dtb = 0; dtb < SIZE_MAX; dtb += 0x1000) {
